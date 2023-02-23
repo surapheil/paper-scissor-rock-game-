@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        function getComputerChoise(){
+            var result= ' ';
+            const randomStr=['ROCK','SCISSOR','PAPER'];
+            const len= randomStr.length;
+            result= randomStr[(Math.floor(Math.random()*len))];
+            
+
+            return result;
+        }
+        
+        var computerWinCounter = 0;
+        var playerWinCounter = 0;
+        var tieCounter = 0;
+
+        function playRound(playerSelection,computerSelection){
+            var playerSelection = (prompt('Enter your selection(Rock,Scissor or Paper): ')).toUpperCase();
+            var computerSelection =getComputerChoise();
+
+            if((playerSelection == 'ROCK' && computerSelection== 'PAPER')||(playerSelection == 'PAPER' && computerSelection == 'SCISSOR')||(playerSelection == 'SCISSOR' && computerSelection == 'ROCK')){
+                computerWinCounter++;
+                return  `you Lose! ${computerSelection} beats ${playerSelection}`;
+                
+            }
+        
+            else if((playerSelection == 'SCISSOR' && computerSelection == 'PAPER')||(playerSelection == 'PAPER' && computerSelection == 'ROCK')||(playerSelection == 'ROCK' && computerSelection == 'SCISSOR')){
+                playerWinCounter++;
+                return `you win! ${playerSelection} beats ${computerSelection}`;
+                
+            }
+           
+            else if((playerSelection == 'ROCK' && computerSelection =='ROCK')||(playerSelection == 'SCISSOR' && computerSelection =='SCISSOR')||(playerSelection == 'PAPER' && computerSelection =='PAPER')){
+                tieCounter++;
+                return 'It is a tie! play again.';
+                
+            }
+            
+            else{
+               return 'invalid input!'
+            }
+        }
+
+        
+        
+        function game(){
+           for(let i = 0;i < 5;i++){
+            console.log(playRound());
+           }
+           scoreCounter();
+           gameResult();
+            }
+         const scoreCounter = () =>{
+            console.log(`player scored: ${playerWinCounter}`);
+            console.log(`computer scored: ${computerWinCounter}`);
+            console.log(`tie scored: ${tieCounter}`);
+         }
+         function gameResult(){
+            if(playerWinCounter > computerWinCounter){
+                console.log('you Won! congratulations');
+            }
+            else if(computerWinCounter > playerWinCounter){
+                console.log('you Lost! try again');
+            }
+            else{
+                console.log('it\'s a Tie! keep playing');
+            }
+         }
+        game();
+            
+        
+
+           
+        
+    
+        
+        
+    </script>
+    
+</body>
+</html>
